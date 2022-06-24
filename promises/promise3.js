@@ -5,12 +5,8 @@ const fs = require("fs");
 let readFileAsync = (url) => {
     return new Promise((resolve, reject) => {
         fs.readFile(url, "utf-8", (err, result) => {
-            if (err) {
-                reject(err)
-            }
-            else {
-                resolve(result)
-            }
+            if (err) { reject(err) }
+            else { resolve(result) }
         })
     })
 }
