@@ -1,24 +1,21 @@
 const fs = require("fs");
+// instead of using .then and .catch, we can use async and await to clean the code up even more
+
 // --------------------------------------------------------------------------
-let function1 = (url) => {
+let asyncFunction1 = (url) => {
     return new Promise((resolve, reject) => {
         fs.readFile(url, "utf-8", (err, result) => {
-            if (err) { reject(err) }
-            else if (result) { resolve(result) }
+            if (err) {
+                reject(err)
+            }
+            else {
+                resolve(result)
+            }
         })
     })
 }
-const result = async () => {
-    try {
-        let one = await function1("./one.txt")
-        console.log(one);
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
 // --------------------------------------------------------------------------
-const function2 = (url) => {
+const asyncFunction2 = (url) => {
     return new Promise((resolve, reject) => {
         fs.readFile(url, "utf-8", (err, data) => {
             if (err) { reject(err) }
@@ -29,10 +26,12 @@ const function2 = (url) => {
     })
 }
 
-const result2 = async () => {
+const result = async () => {
     try {
-        let one = await function2("./two.txt")
+        let one = await asyncFunction1("./texts/one.txt")
+        let two = await asyncFunction2("./texts/two.txt")
         console.log(one);
+        console.log(two);
     }
     catch (err) {
         console.log(err);
@@ -40,4 +39,4 @@ const result2 = async () => {
 }
 // --------------------------------------------------------------------------
 result()
-result2()
+
